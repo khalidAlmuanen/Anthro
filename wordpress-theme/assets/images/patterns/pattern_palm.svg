@@ -1,0 +1,7 @@
+<svg width="240" height="320" viewBox="0 0 240 320" xmlns="http://www.w3.org/2000/svg">
+  <path d="M120 310 Q 120 160 120 10" stroke="#606746" stroke-width="3" stroke-linecap="round" stroke-opacity="0.3" fill="none"/>
+  <!-- Left Fronds -->
+  <path d="M120 280 Q 60 250 20 230 M120 240 Q 50 200 15 175 M120 200 Q 45 155 10 125 M120 160 Q 40 110 15 80 M120 120 Q 40 70 20 40 M120 80 Q 50 40 30 15 M120 40 Q 70 20 50 5" stroke="#606746" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.25" fill="none"/>
+  <!-- Right Fronds -->
+  <path d="M120 280 Q 180 250 220 230 M120 240 Q 190 200 225 175 M120 200 Q 195 155 230 125 M120 160 Q 200 110 225 80 M120 120 Q 200 70 220 40 M120 80 Q 190 40 210 15 M120 40 Q 170 20 190 5" stroke="#606746" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.25" fill="none"/>
+</svg>
