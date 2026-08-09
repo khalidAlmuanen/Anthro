@@ -1032,9 +1032,28 @@ add_action( 'customize_register', 'anthro_podcast_customizer' );
    21. ONE-CLICK AUTO DEMO DATA & SITE SETUP
 ============================================= */
 
+function anthro_get_post_by_title( $title, $post_type = 'post' ) {
+    $posts = get_posts( [
+        'title'                  => $title,
+        'post_type'              => $post_type,
+        'post_status'            => 'any',
+        'numberposts'            => 1,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+    ] );
+    return ! empty( $posts ) ? $posts[0] : null;
+}
+
 function anthro_auto_setup_demo_content() {
+    // Ensure Taxonomy & Category Admin APIs are loaded
+    if ( ! function_exists( 'wp_create_category' ) ) {
+        if ( file_exists( ABSPATH . 'wp-admin/includes/taxonomy.php' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/taxonomy.php';
+        }
+    }
+
     // 1. Create & Set Front Page
-    $front_page = get_page_by_title( 'الرئيسية' );
+    $front_page = anthro_get_post_by_title( 'الرئيسية', 'page' );
     if ( ! $front_page ) {
         $front_page_id = wp_insert_post( [
             'post_title'   => 'الرئيسية',
@@ -1051,16 +1070,18 @@ function anthro_auto_setup_demo_content() {
 
     // 2. Set Permalinks to /%postname%/
     global $wp_rewrite;
-    $wp_rewrite->set_permalink_structure( '/%postname%/' );
-    $wp_rewrite->flush_rules();
+    if ( $wp_rewrite ) {
+        $wp_rewrite->set_permalink_structure( '/%postname%/' );
+        $wp_rewrite->flush_rules();
+    }
 
     // 3. Create Categories
-    $cat_arch = wp_create_category( 'أنثروبولوجيا العمران' );
-    $cat_cult = wp_create_category( 'الثقافة المادية' );
-    $cat_hist = wp_create_category( 'التاريخ الشفهي' );
+    $cat_arch = function_exists( 'wp_create_category' ) ? wp_create_category( 'أنثروبولوجيا العمران' ) : 1;
+    $cat_cult = function_exists( 'wp_create_category' ) ? wp_create_category( 'الثقافة المادية' ) : 1;
+    $cat_hist = function_exists( 'wp_create_category' ) ? wp_create_category( 'التاريخ الشفهي' ) : 1;
 
     // 4. Create Featured Article 1
-    $post_1 = get_page_by_title( 'روشن الحجاز: هندسة الضوء والخصوصية في المعمار التقليدي', OBJECT, 'post' );
+    $post_1 = anthro_get_post_by_title( 'روشن الحجاز: هندسة الضوء والخصوصية في المعمار التقليدي', 'post' );
     if ( ! $post_1 ) {
         $p1_id = wp_insert_post( [
             'post_title'   => 'روشن الحجاز: هندسة الضوء والخصوصية في المعمار التقليدي',
@@ -1070,13 +1091,15 @@ function anthro_auto_setup_demo_content() {
             'post_category'=> [ $cat_arch ],
         ] );
 
-        update_post_meta( $p1_id, '_anthro_featured', '1' );
-        update_post_meta( $p1_id, '_anthro_read_time', '8' );
-        update_post_meta( $p1_id, '_anthro_opening_quote', 'الروشن ليس مجرد نسيج خشبي معقد، بل هو نظام تنفس اجتماعي ومعماري متكامل حظي به المنزل الحجازي.' );
+        if ( $p1_id && ! is_wp_error( $p1_id ) ) {
+            update_post_meta( $p1_id, '_anthro_featured', '1' );
+            update_post_meta( $p1_id, '_anthro_read_time', '8' );
+            update_post_meta( $p1_id, '_anthro_opening_quote', 'الروشن ليس مجرد نسيج خشبي معقد، بل هو نظام تنفس اجتماعي ومعماري متكامل حظي به المنزل الحجازي.' );
+        }
     }
 
     // 5. Create Article 2
-    $post_2 = get_page_by_title( 'القهوة السعودية: أنثروبولوجيا الضيافة والرمزية الاجتماعية', OBJECT, 'post' );
+    $post_2 = anthro_get_post_by_title( 'القهوة السعودية: أنثروبولوجيا الضيافة والرمزية الاجتماعية', 'post' );
     if ( ! $post_2 ) {
         $p2_id = wp_insert_post( [
             'post_title'   => 'القهوة السعودية: أنثروبولوجيا الضيافة والرمزية الاجتماعية',
@@ -1086,12 +1109,14 @@ function anthro_auto_setup_demo_content() {
             'post_category'=> [ $cat_cult ],
         ] );
 
-        update_post_meta( $p2_id, '_anthro_featured', '0' );
-        update_post_meta( $p2_id, '_anthro_read_time', '6' );
+        if ( $p2_id && ! is_wp_error( $p2_id ) ) {
+            update_post_meta( $p2_id, '_anthro_featured', '0' );
+            update_post_meta( $p2_id, '_anthro_read_time', '6' );
+        }
     }
 
     // 6. Create Article 3
-    $post_3 = get_page_by_title( 'نقوش العلا واللحيانيون: توثيق المعتقدات والرموز القديمة', OBJECT, 'post' );
+    $post_3 = anthro_get_post_by_title( 'نقوش العلا واللحيانيون: توثيق المعتقدات والرموز القديمة', 'post' );
     if ( ! $post_3 ) {
         $p3_id = wp_insert_post( [
             'post_title'   => 'نقوش العلا واللحيانيون: توثيق المعتقدات والرموز القديمة',
@@ -1101,12 +1126,14 @@ function anthro_auto_setup_demo_content() {
             'post_category'=> [ $cat_hist ],
         ] );
 
-        update_post_meta( $p3_id, '_anthro_featured', '0' );
-        update_post_meta( $p3_id, '_anthro_read_time', '10' );
+        if ( $p3_id && ! is_wp_error( $p3_id ) ) {
+            update_post_meta( $p3_id, '_anthro_featured', '0' );
+            update_post_meta( $p3_id, '_anthro_read_time', '10' );
+        }
     }
 
     // 7. Create Podcast Episode 1
-    $ep_1 = get_page_by_title( 'الحلقة 1: العمارة الطينية ونمط الحياة القديم في نجد', OBJECT, 'podcast_episode' );
+    $ep_1 = anthro_get_post_by_title( 'الحلقة 1: العمارة الطينية ونمط الحياة القديم في نجد', 'podcast_episode' );
     if ( ! $ep_1 ) {
         $ep1_id = wp_insert_post( [
             'post_title'   => 'الحلقة 1: العمارة الطينية ونمط الحياة القديم في نجد',
@@ -1116,12 +1143,14 @@ function anthro_auto_setup_demo_content() {
             'post_type'    => 'podcast_episode',
         ] );
 
-        update_post_meta( $ep1_id, '_anthro_ep_number', '1' );
-        update_post_meta( $ep1_id, '_anthro_ep_duration', '52' );
-        update_post_meta( $ep1_id, '_anthro_guest_name', 'د. نورة المحمد' );
-        update_post_meta( $ep1_id, '_anthro_audio_url', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' );
-        update_post_meta( $ep1_id, '_anthro_spotify_url', 'https://spotify.com' );
-        update_post_meta( $ep1_id, '_anthro_apple_url', 'https://apple.com' );
+        if ( $ep1_id && ! is_wp_error( $ep1_id ) ) {
+            update_post_meta( $ep1_id, '_anthro_ep_number', '1' );
+            update_post_meta( $ep1_id, '_anthro_ep_duration', '52' );
+            update_post_meta( $ep1_id, '_anthro_guest_name', 'د. نورة المحمد' );
+            update_post_meta( $ep1_id, '_anthro_audio_url', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' );
+            update_post_meta( $ep1_id, '_anthro_spotify_url', 'https://spotify.com' );
+            update_post_meta( $ep1_id, '_anthro_apple_url', 'https://apple.com' );
+        }
     }
 
     // 8. Update Current Admin Bio
