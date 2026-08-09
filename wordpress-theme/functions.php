@@ -250,7 +250,7 @@ function anthro_register_cpts() {
         'show_in_rest'  => true,
     ] );
 }
-add_action( 'init', 'anthro_register_cpts );
+add_action( 'init', 'anthro_register_cpts' );
 
 
 /* =============================================
@@ -733,3 +733,159 @@ remove_action( 'admin_print_styles',  'print_emoji_styles' );
 remove_action( 'wp_head', 'rsd_link' );
 remove_action( 'wp_head', 'wlwmanifest_link' );
 remove_action( 'wp_head', 'wp_generator' ); // Hide WP version
+
+
+/* =============================================
+   13. PAGINATION  —  ترقيم الصفحات
+   تستدعيها: index.php / archive.php / category.php
+             / search.php / author.php
+============================================= */
+
+if ( ! function_exists( 'anthro_pagination' ) ) :
+/**
+ * ترقيم صفحات متوافق مع RTL وبأرقام عربية.
+ *
+ * @param WP_Query|null $query استعلام مخصص، أو null للاستعلام الرئيسي.
+ */
+function anthro_pagination( $query = null ) {
+
+    global $wp_query;
+    $q = $query instanceof WP_Query ? $query : $wp_query;
+
+    if ( $q->max_num_pages <= 1 ) {
+        return;
+    }
+
+    $current = max( 1, get_query_var( 'paged' ) ?: get_query_var( 'page' ) ?: 1 );
+
+    // في RTL يُعكس اتجاه الأسهم بصرياً عبر CSS، لا عبر تبديل النصوص.
+    $links = paginate_links( [
+        'base'      => str_replace( PHP_INT_MAX, '%#%', esc_url( get_pagenum_link( PHP_INT_MAX ) ) ),
+        'format'    => '?paged=%#%',
+        'current'   => $current,
+        'total'     => $q->max_num_pages,
+        'mid_size'  => 1,
+        'end_size'  => 1,
+        'type'      => 'array',
+        'prev_text' => '<span class="page-btn page-btn--prev" aria-hidden="true">'
+                     . '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>'
+                     . '</span><span class="screen-reader-text">' . esc_html__( 'السابق', 'anthro' ) . '</span>',
+        'next_text' => '<span class="page-btn page-btn--next" aria-hidden="true">'
+                     . '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>'
+                     . '</span><span class="screen-reader-text">' . esc_html__( 'التالي', 'anthro' ) . '</span>',
+    ] );
+
+    if ( empty( $links ) ) {
+        return;
+    }
+
+    echo '<nav class="pagination" role="navigation" aria-label="' . esc_attr__( 'ترقيم الصفحات', 'anthro' ) . '">';
+
+    foreach ( $links as $link ) {
+        // تحويل الأرقام اللاتينية إلى عربية داخل الروابط فقط.
+        $link = preg_replace_callback(
+            '/>(\d+)</',
+            function ( $m ) { return '>' . anthro_arabic_num( $m[1] ) . '<'; },
+            $link
+        );
+        echo wp_kses_post( $link );
+    }
+
+    echo '</nav>';
+}
+endif;
+
+
+/* =============================================
+   14. SEARCH QUERY REFINEMENTS  —  ضبط البحث
+============================================= */
+
+/**
+ * توسيع البحث ليشمل حلقات البودكاست، وترتيب النتائج بالصلة.
+ */
+function anthro_search_include_cpts( $query ) {
+
+    if ( is_admin() || ! $query->is_main_query() || ! $query->is_search() ) {
+        return;
+    }
+
+    $query->set( 'post_type', [ 'post', 'page', 'podcast_episode' ] );
+
+    // دعم الفرز عبر ?orderby= في صفحات التصنيف
+    if ( isset( $_GET['orderby'] ) ) {
+        $orderby = sanitize_key( $_GET['orderby'] );
+        if ( in_array( $orderby, [ 'date', 'title', 'rand' ], true ) ) {
+            $query->set( 'orderby', $orderby );
+            $query->set( 'order', $orderby === 'title' ? 'ASC' : 'DESC' );
+        }
+    }
+}
+add_action( 'pre_get_posts', 'anthro_search_include_cpts' );
+
+
+/**
+ * تطبيق الفرز على أرشيفات التصنيفات.
+ */
+function anthro_category_orderby( $query ) {
+
+    if ( is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+
+    if ( ( $query->is_category() || $query->is_tax() || $query->is_archive() ) && isset( $_GET['orderby'] ) ) {
+        $orderby = sanitize_key( $_GET['orderby'] );
+        if ( in_array( $orderby, [ 'date', 'title', 'rand' ], true ) ) {
+            $query->set( 'orderby', $orderby );
+            $query->set( 'order', $orderby === 'title' ? 'ASC' : 'DESC' );
+        }
+    }
+}
+add_action( 'pre_get_posts', 'anthro_category_orderby' );
+
+
+/* =============================================
+   15. AUTHOR PROFILE FIELDS  —  حقول الباحث
+============================================= */
+
+/**
+ * إضافة حقل تويتر/إكس لملف المستخدم (يستخدمه author.php).
+ */
+function anthro_author_contact_fields( $fields ) {
+    $fields['twitter']   = __( 'حساب X (تويتر)', 'anthro' );
+    $fields['scholar']   = __( 'Google Scholar', 'anthro' );
+    $fields['institute'] = __( 'الجهة الأكاديمية', 'anthro' );
+    return $fields;
+}
+add_filter( 'user_contactmethods', 'anthro_author_contact_fields' );
+
+
+/* =============================================
+   16. PERFORMANCE  —  تحسينات الأداء
+============================================= */
+
+/**
+ * تفعيل التحميل الكسول والأبعاد الصريحة للصور.
+ */
+function anthro_image_defaults( $attr ) {
+    if ( ! isset( $attr['loading'] ) ) {
+        $attr['loading'] = 'lazy';
+    }
+    if ( ! isset( $attr['decoding'] ) ) {
+        $attr['decoding'] = 'async';
+    }
+    return $attr;
+}
+add_filter( 'wp_get_attachment_image_attributes', 'anthro_image_defaults' );
+
+
+/**
+ * إزالة الـ emoji scripts غير المستخدمة (توفير ~12KB).
+ */
+function anthro_disable_emojis() {
+    remove_action( 'wp_head',             'print_emoji_detection_script', 7 );
+    remove_action( 'wp_print_styles',     'print_emoji_styles' );
+    remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+    remove_action( 'admin_print_styles',  'print_emoji_styles' );
+}
+add_action( 'init', 'anthro_disable_emojis' );
+

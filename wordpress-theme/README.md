@@ -7,28 +7,30 @@
 
 ```
 anthro/                        ← مجلد الثيم (ارفعه على WordPress)
-├── style.css                  ← هوية الثيم (لا تعدّل)
-├── functions.php              ← منطق الثيم الكامل
+├── index.php                  ← القالب الاحتياطي الإلزامي لـ WordPress
+├── style.css                  ← هوية الثيم الأساسية
+├── functions.php              ← منطق الثيم والـ CPT والـ Pagination المطور
 ├── header.php                 ← الهيدر لكل الصفحات
 ├── footer.php                 ← الفوتر لكل الصفحات
 ├── front-page.php             ← قالب الصفحة الرئيسية
 ├── single.php                 ← قالب المقال الفردي
-├── archive.php                ← قالب أرشيف/تصنيف
-├── search.php                 ← قالب البحث
-├── author.php                 ← قالب صفحة الكاتب
-├── page.php                   ← قالب الصفحة العادية
-├── template-podcast.php       ← قالب صفحة البودكاست
+├── page.php                   ← قالب الصفحات الثابتة
+├── archive.php                ← قالب الأرشيف العام
+├── category.php              ← قالب التصنيفات المخصص مع الفرز
+├── search.php                 ← قالب نتائج البحث والباحثين
+├── searchform.php             ← نموذج البحث المخصص
+├── author.php                 ← قالب صفحة الكاتب/الباحث والإحصاءات
+├── 404.php                    ← قالب صفحة الخطأ المخصصة
 ├── template-parts/
-│   ├── card-article.php       ← بطاقة المقال (مُعاد استخدامها)
+│   ├── card-article.php       ← بطاقة المقال
+│   ├── content-none.php       ← حالة عدم وجود نتائج (Empty State)
 │   └── newsletter.php         ← قسم النشرة البريدية
 └── assets/
     ├── css/
-    │   ├── anthro-main.css    ← CSS الرئيسي (من prototype)
-    │   └── anthro-rtl.css     ← تحسينات RTL
+    │   ├── anthro-main.css    ← CSS الرئيسي
+    │   └── anthro-inner.css   ← CSS الصفحات الفرعية والـ Components
     └── js/
-        ├── anthro-main.js     ← JS الرئيسي
-        ├── anthro-single.js   ← JS خاص بالمقال
-        └── anthro-podcast.js  ← JS خاص بالبودكاست
+        └── anthro-main.js     ← JS الرئيسي والتسريع
 ```
 
 ---
