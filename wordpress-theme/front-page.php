@@ -255,21 +255,21 @@ $total_cats      = wp_count_terms('category');
     <div class="authors-grid">
       <?php
       $authors = get_users( [
-        'who'     => 'authors',
-        'number'  => 4,
-        'orderby' => 'post_count',
-        'order'   => 'DESC',
+        'capability' => [ 'edit_posts' ],
+        'number'     => 4,
+        'orderby'    => 'post_count',
+        'order'      => 'DESC',
       ] );
       foreach ( $authors as $author ) :
         $post_count = count_user_posts( $author->ID, 'post' );
         if ( $post_count < 1 ) continue;
       ?>
-        <a href="<?php echo esc_url(get_author_posts_url($author->ID)); ?>" class="au-card" id="au-<?php echo esc_attr($author->user_login); ?>">
+        <a href="<?php echo esc_url(get_author_posts_url($author->ID)); ?>" class="au-card" id="au-<?php echo esc_attr($author->ID); ?>">
           <div class="au-photo">
             <?php echo get_avatar( $author->ID, 80, '', '', ['class' => 'au-photo-img'] ); ?>
           </div>
           <h4 class="au-name"><?php echo esc_html($author->display_name); ?></h4>
-          <p class="au-field"><?php echo esc_html($author->description ?: ''); ?></p>
+          <p class="au-field"><?php echo esc_html( get_the_author_meta('description', $author->ID) ); ?></p>
           <span class="au-count"><?php echo anthro_arabic_num($post_count); ?> <?php esc_html_e('مقالات','anthro'); ?></span>
         </a>
       <?php endforeach; ?>
