@@ -9,11 +9,14 @@
 anthro/                        ← مجلد الثيم (ارفعه على WordPress)
 ├── index.php                  ← القالب الاحتياطي الإلزامي لـ WordPress
 ├── style.css                  ← هوية الثيم الأساسية
-├── functions.php              ← منطق الثيم والـ CPT والـ Pagination المطور
+├── functions.php              ← منطق الثيم والـ CPT وSchema البودكاست
 ├── header.php                 ← الهيدر لكل الصفحات
 ├── footer.php                 ← الفوتر لكل الصفحات
 ├── front-page.php             ← قالب الصفحة الرئيسية
 ├── single.php                 ← قالب المقال الفردي
+├── single-podcast_episode.php ← قالب صفحة الحلقة والمشغّل الصوت الحقيقي
+├── archive-podcast_episode.php← قالب أرشيف البودكاست الرئيسي (/podcast/)
+├── taxonomy-podcast_season.php← قالب أرشيف الموسم الواحد (/season/slug)
 ├── page.php                   ← قالب الصفحات الثابتة
 ├── archive.php                ← قالب الأرشيف العام
 ├── category.php              ← قالب التصنيفات المخصص مع الفرز
@@ -23,14 +26,16 @@ anthro/                        ← مجلد الثيم (ارفعه على WordPr
 ├── 404.php                    ← قالب صفحة الخطأ المخصصة
 ├── template-parts/
 │   ├── card-article.php       ← بطاقة المقال
+│   ├── card-episode.php       ← بطاقة حلقة البودكاست
 │   ├── content-none.php       ← حالة عدم وجود نتائج (Empty State)
 │   └── newsletter.php         ← قسم النشرة البريدية
 └── assets/
     ├── css/
     │   ├── anthro-main.css    ← CSS الرئيسي
-    │   └── anthro-inner.css   ← CSS الصفحات الفرعية والـ Components
+    │   └── anthro-inner.css   ← CSS الصفحات الفرعية والبودكاست
     └── js/
-        └── anthro-main.js     ← JS الرئيسي والتسريع
+        ├── anthro-main.js     ← JS الرئيسي والتسريع
+        └── anthro-podcast.js  ← مشغّل الصوت الحقيقي ودعم RTL
 ```
 
 ---

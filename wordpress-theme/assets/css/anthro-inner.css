@@ -726,3 +726,218 @@ select.form-control { appearance: none; cursor: pointer; }
   color: var(--color-text-muted, #777);
 }
 
+
+/* =============================================
+   ANTHRO PODCAST ADDITIONS
+============================================= */
+
+/* ---------- دوران الأسطوانة أثناء التشغيل ---------- */
+.vinyl-disc {
+  transition: transform .3s ease;
+}
+
+.vinyl-disc.spinning {
+  animation: anthro-vinyl-spin 8s linear infinite;
+}
+
+@keyframes anthro-vinyl-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vinyl-disc.spinning { animation: none; }
+  .player-art-waves span { animation: none !important; }
+}
+
+/* ---------- اسم ضيف الحلقة ---------- */
+.ep-guest {
+  font-size: .95rem;
+  color: var(--c-muted, #6b6b5e);
+  margin: 0 0 1rem;
+  line-height: 1.9;
+}
+
+.ep-guest strong {
+  color: var(--c-olive, #686848);
+  font-weight: 600;
+}
+
+/* ---------- حالة عدم وجود صوت ---------- */
+.ep-no-audio {
+  padding: 1.25rem 1.5rem;
+  background: var(--c-sand, #F0F3EC);
+  border-inline-start: 3px solid var(--c-copper, #C47A6A);
+  border-radius: 0;
+  color: var(--c-muted, #6b6b5e);
+  font-size: .95rem;
+  margin: 1.5rem 0;
+}
+
+/* ---------- ملاحظات الحلقة ---------- */
+.ep-notes-section {
+  background: var(--c-cream, #EFE1D4);
+}
+
+.ep-notes {
+  max-width: 42rem;
+  margin-inline: auto;
+  line-height: 2.05;
+}
+
+.ep-notes h2,
+.ep-notes h3 {
+  margin-top: 2.5rem;
+  margin-bottom: .75rem;
+}
+
+/* ---------- الموجة الصوتية: الأعمدة المشغّلة ---------- */
+.ap-wf-bar {
+  transition: background-color .15s ease, opacity .15s ease;
+}
+
+.ap-wf-bar.played {
+  background-color: var(--c-copper, #C47A6A);
+  opacity: 1;
+}
+
+/* ---------- مؤشر التقدم في RTL ---------- */
+[dir="rtl"] .ap-thumb {
+  transform: translate(50%, -50%);
+}
+
+[dir="ltr"] .ap-thumb {
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- هيرو البودكاست: نسخة الحلقة والموسم ---------- */
+.pod-hero--single,
+.pod-hero--season {
+  min-height: 22rem;
+}
+
+.pod-hero--single .cat-bc,
+.pod-hero--season .cat-bc {
+  position: relative;
+  z-index: 3;
+  padding-top: 2rem;
+}
+
+.pod-hero--single .cat-bc .bc-link,
+.pod-hero--season .cat-bc .bc-link,
+.pod-hero--single .cat-bc .bc-current,
+.pod-hero--season .cat-bc .bc-current {
+  color: rgba(255, 255, 255, .85);
+}
+
+/* ---------- موجات الهيرو ---------- */
+.pod-waves {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 3rem;
+  margin-top: 2rem;
+}
+
+.pod-waves .wave-bar {
+  flex: 1;
+  min-width: 2px;
+  background: rgba(255, 255, 255, .35);
+  border-radius: 2px;
+  animation: anthro-wave 1.4s ease-in-out infinite;
+}
+
+.pod-waves .wave-bar:nth-child(odd)  { animation-delay: .2s; }
+.pod-waves .wave-bar:nth-child(3n)   { animation-delay: .4s; }
+.pod-waves .wave-bar:nth-child(5n)   { animation-delay: .6s; }
+
+@keyframes anthro-wave {
+  0%, 100% { transform: scaleY(.6); }
+  50%      { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pod-waves .wave-bar { animation: none; }
+}
+
+/* ---------- تبويب الموسم النشط ---------- */
+.season-tab {
+  text-decoration: none;
+}
+
+.season-tab.active {
+  background: var(--c-olive, #686848);
+  color: #fff;
+}
+
+.season-tab.active .season-name,
+.season-tab.active .season-count,
+.season-tab.active .season-num {
+  color: #fff;
+}
+
+/* ---------- صورة الحلقة كخلفية ---------- */
+.ep-item-thumb {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.ep-item-play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+/* ---------- أزرار المنصات ---------- */
+.platform-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  text-decoration: none;
+}
+
+.platform-btn svg {
+  flex-shrink: 0;
+}
+
+/* ---------- الوسوم كروابط ---------- */
+.ep-tag-item {
+  text-decoration: none;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+a.ep-tag-item:hover {
+  background: var(--c-olive, #686848);
+  color: #fff;
+}
+
+/* ---------- إجمالي الحلقات ---------- */
+.ep-total {
+  display: inline-block;
+  padding: .4rem 1rem;
+  background: rgba(255, 255, 255, .15);
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 2rem;
+  color: #fff;
+  font-size: .9rem;
+  margin-top: 1rem;
+}
+
+/* ---------- الاستجابة ---------- */
+@media (max-width: 768px) {
+  .full-player-card {
+    grid-template-columns: 1fr;
+  }
+
+  .pod-waves {
+    height: 2rem;
+  }
+
+  .ep-item-num {
+    display: none;
+  }
+}
+
+

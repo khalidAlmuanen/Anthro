@@ -889,3 +889,142 @@ function anthro_disable_emojis() {
 }
 add_action( 'init', 'anthro_disable_emojis' );
 
+
+/* =============================================
+   17. PODCAST PLAYER SCRIPT  —  ضمان التحميل
+   ملاحظة: functions.php يسجّل الهاندل 'anthro-podcast'
+   مسبقاً في anthro_scripts(). لا نكرر التسجيل — نتحقق فقط
+   من أنه فعلاً مُحمّل على صفحات الحلقات، ونضيفه إن غاب.
+============================================= */
+
+function anthro_podcast_scripts() {
+
+    if ( ! is_singular( 'podcast_episode' ) ) {
+        return;
+    }
+
+    // إن كان مسجلاً بالفعل من anthro_scripts() فلا نفعل شيئاً.
+    if ( wp_script_is( 'anthro-podcast', 'enqueued' ) || wp_script_is( 'anthro-podcast', 'registered' ) ) {
+        return;
+    }
+
+    wp_enqueue_script(
+        'anthro-podcast',
+        ANTHRO_URI . '/assets/js/anthro-podcast.js',
+        [],
+        defined( 'ANTHRO_VER' ) ? ANTHRO_VER : '1.0.0',
+        true
+    );
+}
+add_action( 'wp_enqueue_scripts', 'anthro_podcast_scripts', 20 );
+
+
+/* =============================================
+   18. PODCAST QUERY  —  ترتيب الحلقات
+============================================= */
+
+/**
+ * ترتيب الحلقات تنازلياً حسب رقم الحلقة، لا حسب التاريخ.
+ */
+function anthro_podcast_order( $query ) {
+
+    if ( is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+
+    if ( $query->is_post_type_archive( 'podcast_episode' ) || $query->is_tax( 'podcast_season' ) ) {
+        $query->set( 'meta_key', '_anthro_ep_number' );
+        $query->set( 'orderby', [ 'meta_value_num' => 'DESC', 'date' => 'DESC' ] );
+        $query->set( 'posts_per_page', 12 );
+    }
+}
+add_action( 'pre_get_posts', 'anthro_podcast_order' );
+
+
+/* =============================================
+   19. PODCAST SEO  —  بيانات منظمة
+============================================= */
+
+/**
+ * إخراج Schema.org PodcastEpisode لتحسين الظهور في نتائج البحث.
+ */
+function anthro_podcast_schema() {
+
+    if ( ! is_singular( 'podcast_episode' ) ) {
+        return;
+    }
+
+    $post_id   = get_the_ID();
+    $audio_url = get_post_meta( $post_id, '_anthro_audio_url', true );
+
+    if ( ! $audio_url ) {
+        return;
+    }
+
+    $schema = [
+        '@context'      => 'https://schema.org',
+        '@type'         => 'PodcastEpisode',
+        'url'           => get_permalink( $post_id ),
+        'name'          => get_the_title( $post_id ),
+        'datePublished' => get_the_date( 'c', $post_id ),
+        'description'   => wp_strip_all_tags( get_the_excerpt( $post_id ) ),
+        'associatedMedia' => [
+            '@type'      => 'MediaObject',
+            'contentUrl' => $audio_url,
+        ],
+        'partOfSeries'  => [
+            '@type' => 'PodcastSeries',
+            'name'  => get_bloginfo( 'name' ),
+            'url'   => get_post_type_archive_link( 'podcast_episode' ),
+        ],
+    ];
+
+    $ep_number = get_post_meta( $post_id, '_anthro_ep_number', true );
+    if ( $ep_number ) {
+        $schema['episodeNumber'] = absint( $ep_number );
+    }
+
+    if ( has_post_thumbnail( $post_id ) ) {
+        $schema['image'] = get_the_post_thumbnail_url( $post_id, 'full' );
+    }
+
+    echo '<script type="application/ld+json">'
+       . wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES )
+       . '</script>' . "\n";
+}
+add_action( 'wp_head', 'anthro_podcast_schema' );
+
+
+/* =============================================
+   20. CUSTOMIZER  —  روابط منصات البودكاست
+============================================= */
+
+function anthro_podcast_customizer( $wp_customize ) {
+
+    $wp_customize->add_section( 'anthro_podcast_section', [
+        'title'    => __( 'روابط البودكاست', 'anthro' ),
+        'priority' => 35,
+    ] );
+
+    $platforms = [
+        'anthro_social_spotify' => __( 'رابط البودكاست على Spotify', 'anthro' ),
+        'anthro_social_apple'   => __( 'رابط البودكاست على Apple Podcasts', 'anthro' ),
+    ];
+
+    foreach ( $platforms as $setting => $label ) {
+        $wp_customize->add_setting( $setting, [
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw',
+            'transport'         => 'refresh',
+        ] );
+
+        $wp_customize->add_control( $setting, [
+            'label'   => $label,
+            'section' => 'anthro_podcast_section',
+            'type'    => 'url',
+        ] );
+    }
+}
+add_action( 'customize_register', 'anthro_podcast_customizer' );
+
+
