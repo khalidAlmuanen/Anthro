@@ -141,20 +141,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===========================
   // 5. FILTER TABS
   // ===========================
-  const filterBtns = document.querySelectorAll('.flt-btn');
-  const artCards = document.querySelectorAll('#art-grid .art-card--grid');
+  const filterBtns = document.querySelectorAll('.flt-btn, .filter-btn');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Update active button
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      const filter = btn.dataset.f;
+      const filter = btn.dataset.cat || btn.dataset.f || '0';
+      const artCards = document.querySelectorAll('#articles-grid .art-card, #art-grid .art-card, .art-grid .art-card');
 
       artCards.forEach(card => {
-        const cat = card.dataset.cat;
-        const matches = filter === 'all' || cat === filter;
+        const cat = card.dataset.cat || '0';
+        const matches = filter === 'all' || filter === '0' || cat === filter;
 
         if (matches) {
           card.style.display = '';
@@ -173,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
 
 
   // ===========================

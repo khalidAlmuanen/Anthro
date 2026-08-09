@@ -8,12 +8,12 @@
 
 $size = $args['size'] ?? 'normal';
 $read_time = anthro_reading_time();
+$primary_cat = get_the_category();
+$cat_id = ! empty( $primary_cat ) ? $primary_cat[0]->term_id : 0;
+$thumb_url = has_post_thumbnail() ? get_the_post_thumbnail_url(null,'anthro-card') : ANTHRO_URI . '/assets/images/hero_architecture.png';
 ?>
-<article class="art-card art-card--grid" id="art-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>">
-  <a href="<?php the_permalink(); ?>" class="art-img-link" aria-hidden="true" tabindex="-1">
-    <?php 
-    $thumb_url = has_post_thumbnail() ? get_the_post_thumbnail_url(null,'anthro-card') : ANTHRO_URI . '/assets/images/hero_architecture.png';
-    ?>
+<article class="art-card art-card--grid" id="art-<?php the_ID(); ?>" data-id="<?php the_ID(); ?>" data-cat="<?php echo esc_attr($cat_id); ?>">
+  <a href="<?php the_permalink(); ?>" class="art-img-link" aria-label="<?php echo esc_attr(get_the_title()); ?>">
     <div class="art-img" style="height:<?php echo $size === 'large' ? '260' : '200'; ?>px; background-image:url('<?php echo esc_url($thumb_url); ?>'); background-size:cover; background-position:center;">
       <?php anthro_category_badge(); ?>
     </div>
@@ -39,3 +39,4 @@ $read_time = anthro_reading_time();
     </div>
   </div>
 </article>
+

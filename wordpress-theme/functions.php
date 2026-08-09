@@ -82,12 +82,19 @@ add_action( 'after_setup_theme', 'anthro_setup' );
 
 
 /* =============================================
-   3. CONTENT WIDTH
+   3. CONTENT WIDTH & BODY CLASSES
 ============================================= */
 function anthro_content_width() {
     $GLOBALS['content_width'] = apply_filters( 'anthro_content_width', 860 );
 }
 add_action( 'after_setup_theme', 'anthro_content_width', 0 );
+
+function anthro_body_classes( $classes ) {
+    $classes[] = 'pattern-topography';
+    return $classes;
+}
+add_filter( 'body_class', 'anthro_body_classes' );
+
 
 
 /* =============================================

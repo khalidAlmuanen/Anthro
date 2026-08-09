@@ -314,28 +314,28 @@ input, textarea { font-family: inherit; }
 
 /* 1. التضاريس (Topography Pattern) */
 .pattern-topography {
-  background-image: url('assets/images/patterns/pattern_topography.svg');
+  background-image: url('../images/patterns/pattern_topography.svg');
   background-repeat: repeat;
   background-size: 200px 200px;
 }
 
 /* 2. النمط الهندسي النجدي / السدو (Najdi Geometric Sadu) */
 .pattern-sadu, .pattern-geo {
-  background-image: url('assets/images/patterns/pattern_sadu.svg');
+  background-image: url('../images/patterns/pattern_sadu.svg');
   background-repeat: repeat;
   background-size: 60px 60px;
 }
 
 /* 3. نسيج السعف (Palm Weave Texture) */
 .pattern-weave {
-  background-image: url('assets/images/patterns/pattern_weave.svg');
+  background-image: url('../images/patterns/pattern_weave.svg');
   background-repeat: repeat;
   background-size: 40px 40px;
 }
 
 /* 4. سعف النخل (Palm Leaf Motifs) */
 .pattern-palm {
-  background-image: url('assets/images/patterns/pattern_palm.svg');
+  background-image: url('../images/patterns/pattern_palm.svg');
   background-repeat: no-repeat;
   background-position: center right;
   background-size: contain;
@@ -343,10 +343,33 @@ input, textarea { font-family: inherit; }
 
 /* 5. فتحات الطين النجدية (Najdi Mudbrick Vents) */
 .pattern-mudbrick {
-  background-image: url('assets/images/patterns/pattern_mudbrick.svg');
+  background-image: url('../images/patterns/pattern_mudbrick.svg');
   background-repeat: repeat;
   background-size: 80px 80px;
 }
+
+/* شبكة الحلقات والمحاذاة */
+.episodes-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* صور الكُتّاب الدائرية */
+.au-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 16px;
+}
+.au-photo img, .au-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 
 .hero-content {
   position: relative;

@@ -92,7 +92,7 @@ $total_cats      = wp_count_terms('category');
 <!-- ═══════════════════════════════════════
      CATEGORIES SECTION
 ════════════════════════════════════════ -->
-<section class="categories-section section-space" id="categories">
+<section class="categories-section section-space pattern-sadu" id="categories">
   <div class="container">
     <div class="sec-header">
       <div class="sec-label"><span class="sec-line"></span><span><?php esc_html_e('التصنيفات','anthro'); ?></span></div>
@@ -117,7 +117,7 @@ $total_cats      = wp_count_terms('category');
 <!-- ═══════════════════════════════════════
      FEATURED STORIES
 ════════════════════════════════════════ -->
-<section class="stories-section section-space" id="featured-stories">
+<section class="stories-section section-space pattern-weave" id="featured-stories">
   <div class="container">
     <div class="sec-header">
       <div class="sec-label"><span class="sec-line"></span><span><?php esc_html_e('مقالات مميزة','anthro'); ?></span></div>
@@ -144,7 +144,7 @@ $total_cats      = wp_count_terms('category');
 <!-- ═══════════════════════════════════════
      PHILOSOPHY STRIP
 ════════════════════════════════════════ -->
-<section class="philosophy" id="philosophy">
+<section class="philosophy pattern-palm" id="philosophy">
   <div class="container">
     <div class="philosophy-inner">
       <span class="ph-mark">"</span>
@@ -205,7 +205,7 @@ $total_cats      = wp_count_terms('category');
 <!-- ═══════════════════════════════════════
      PODCAST SECTION
 ════════════════════════════════════════ -->
-<section class="podcast-section section-space" id="podcast" style="background: var(--olive-dk);">
+<section class="podcast-section section-space pattern-mudbrick" id="podcast" style="background: var(--olive-dk);">
   <div class="container">
     <div class="sec-header">
       <div class="sec-label sec-label--lt"><span class="sec-line sec-line--lt"></span><span><?php esc_html_e('أحدث الحلقات','anthro'); ?></span></div>
