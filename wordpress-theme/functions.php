@@ -1028,3 +1028,140 @@ function anthro_podcast_customizer( $wp_customize ) {
 add_action( 'customize_register', 'anthro_podcast_customizer' );
 
 
+/* =============================================
+   21. ONE-CLICK AUTO DEMO DATA & SITE SETUP
+============================================= */
+
+function anthro_auto_setup_demo_content() {
+    // 1. Create & Set Front Page
+    $front_page = get_page_by_title( 'الرئيسية' );
+    if ( ! $front_page ) {
+        $front_page_id = wp_insert_post( [
+            'post_title'   => 'الرئيسية',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_content' => '',
+        ] );
+    } else {
+        $front_page_id = $front_page->ID;
+    }
+
+    update_option( 'show_on_front', 'page' );
+    update_option( 'page_on_front', $front_page_id );
+
+    // 2. Set Permalinks to /%postname%/
+    global $wp_rewrite;
+    $wp_rewrite->set_permalink_structure( '/%postname%/' );
+    $wp_rewrite->flush_rules();
+
+    // 3. Create Categories
+    $cat_arch = wp_create_category( 'أنثروبولوجيا العمران' );
+    $cat_cult = wp_create_category( 'الثقافة المادية' );
+    $cat_hist = wp_create_category( 'التاريخ الشفهي' );
+
+    // 4. Create Featured Article 1
+    $post_1 = get_page_by_title( 'روشن الحجاز: هندسة الضوء والخصوصية في المعمار التقليدي', OBJECT, 'post' );
+    if ( ! $post_1 ) {
+        $p1_id = wp_insert_post( [
+            'post_title'   => 'روشن الحجاز: هندسة الضوء والخصوصية في المعمار التقليدي',
+            'post_content' => 'يمثل الروشن الحجازي إحدى أبرز المفردات المعمارية التقليدية في غرب الجزيرة العربية، حيث يدمج بين الوظيفة البيئية لتهوية المنازل والجمالية البصرية، مع الحفاظ الكامل على الخصوصية الاجتماعية. تناقش هذه الدراسة الميدانية كيف تكيف الإنسان الحجازي مع حرارة الصيف عبر ابتكار واجهات خشبية تنفسية مفرغة تُعرف بالروشن.',
+            'post_excerpt' => 'دراسة ميدانية لمفردات الرواشين الحجازية وعلاقتها بالبنية الاجتماعية والتكيف المناخي في جدة التاريخية.',
+            'post_status'  => 'publish',
+            'post_category'=> [ $cat_arch ],
+        ] );
+
+        update_post_meta( $p1_id, '_anthro_featured', '1' );
+        update_post_meta( $p1_id, '_anthro_read_time', '8' );
+        update_post_meta( $p1_id, '_anthro_opening_quote', 'الروشن ليس مجرد نسيج خشبي معقد، بل هو نظام تنفس اجتماعي ومعماري متكامل حظي به المنزل الحجازي.' );
+    }
+
+    // 5. Create Article 2
+    $post_2 = get_page_by_title( 'القهوة السعودية: أنثروبولوجيا الضيافة والرمزية الاجتماعية', OBJECT, 'post' );
+    if ( ! $post_2 ) {
+        $p2_id = wp_insert_post( [
+            'post_title'   => 'القهوة السعودية: أنثروبولوجيا الضيافة والرمزية الاجتماعية',
+            'post_content' => 'تعد القهوة في الثقافة السعودية رمزاً عريقاً للكرامة والضيافة، وترتبط بطقوس وممارسات اجتماعية دقيقة تبدأ من اختيار حبوب البن وتجهيز المحماس، وحتى صب الفنجال باليد اليمنى وتحديد مقداره. يستعرض هذا البحث الرموز الثقافية والتواصلية التي تحكم مجلس القهوة.',
+            'post_excerpt' => 'قراءة أنثروبولوجية في دلالات القهوة وطقوس تقديمها في المجتمع السعودي عبر الأجيال.',
+            'post_status'  => 'publish',
+            'post_category'=> [ $cat_cult ],
+        ] );
+
+        update_post_meta( $p2_id, '_anthro_featured', '0' );
+        update_post_meta( $p2_id, '_anthro_read_time', '6' );
+    }
+
+    // 6. Create Article 3
+    $post_3 = get_page_by_title( 'نقوش العلا واللحيانيون: توثيق المعتقدات والرموز القديمة', OBJECT, 'post' );
+    if ( ! $post_3 ) {
+        $p3_id = wp_insert_post( [
+            'post_title'   => 'نقوش العلا واللحيانيون: توثيق المعتقدات والرموز القديمة',
+            'post_content' => 'تكشف النقوش الصخرية في وادي العلا عن ثراء لغوي وديني للشعوب الاستيطانية القديمة كالديدانيين واللحيانيين. تناقش هذه الورقة قراءة أنثروبولوجية للنصوص المكتوبة والرموز الصخرية التي وثقت الحياة اليومية والتجارية في شمال غرب الجزيرة العربية.',
+            'post_excerpt' => 'تحليل أنثروبولوجي للنصوص الصخرية والرموز العقائدية في شمال غرب المملكة.',
+            'post_status'  => 'publish',
+            'post_category'=> [ $cat_hist ],
+        ] );
+
+        update_post_meta( $p3_id, '_anthro_featured', '0' );
+        update_post_meta( $p3_id, '_anthro_read_time', '10' );
+    }
+
+    // 7. Create Podcast Episode 1
+    $ep_1 = get_page_by_title( 'الحلقة 1: العمارة الطينية ونمط الحياة القديم في نجد', OBJECT, 'podcast_episode' );
+    if ( ! $ep_1 ) {
+        $ep1_id = wp_insert_post( [
+            'post_title'   => 'الحلقة 1: العمارة الطينية ونمط الحياة القديم في نجد',
+            'post_content' => 'في هذه الحلقة الأولى من بودكاست أنثرو، نستضيف الباحثة د. نورة المحمد للحوار حول تقنيات البناء بالطين، وتصميم قصر المربع والمجمعات السكنية النجدية، وكيف شكلت هذه المواد الطبيعية نمط العلاقات الاجتماعية والتكافل بين السكان.',
+            'post_excerpt' => 'حوار حول العمارة الطينية وتقنيات البناء النجدية التقليدية وتأثير البيئة الصحراوية.',
+            'post_status'  => 'publish',
+            'post_type'    => 'podcast_episode',
+        ] );
+
+        update_post_meta( $ep1_id, '_anthro_ep_number', '1' );
+        update_post_meta( $ep1_id, '_anthro_ep_duration', '52' );
+        update_post_meta( $ep1_id, '_anthro_guest_name', 'د. نورة المحمد' );
+        update_post_meta( $ep1_id, '_anthro_audio_url', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' );
+        update_post_meta( $ep1_id, '_anthro_spotify_url', 'https://spotify.com' );
+        update_post_meta( $ep1_id, '_anthro_apple_url', 'https://apple.com' );
+    }
+
+    // 8. Update Current Admin Bio
+    $user_id = get_current_user_id();
+    if ( $user_id ) {
+        update_user_meta( $user_id, 'description', 'أستاذ أنثروبولوجيا ومؤرخ مهتم بتوثيق التراث المادي والشفهي في الجزيرة العربية.' );
+        update_user_meta( $user_id, 'twitter', 'anthro_sa' );
+    }
+}
+
+// Automatic Run on Theme Activation
+add_action( 'after_switch_theme', 'anthro_auto_setup_demo_content' );
+
+// One-Click Admin Banner Notice
+function anthro_demo_import_notice() {
+    if ( ! current_user_can( 'manage_options' ) ) return;
+    
+    if ( isset( $_GET['anthro_imported'] ) ) {
+        echo '<div class="notice notice-success is-dismissible"><p><strong>🌿 تم تثبيت وتفعيل كافة محتويات مشروع أنثرو التلقائية والصفحة الرئيسية بنجاح!</strong></p></div>';
+        return;
+    }
+
+    $setup_url = wp_nonce_url( admin_url( 'admin.php?action=anthro_do_import_demo' ), 'anthro_import_action' );
+    echo '<div class="notice notice-info" style="border-inline-start-color: #686848; padding: 12px 18px;">
+        <h3 style="margin: 0 0 6px 0; color: #4a5d4e;">🌿 تثبيت محتوى مشروع أنثرو التلقائي (Anthropology Project Demo Content)</h3>
+        <p style="margin: 0 0 10px 0;">اضغط على الزر أدناه لتلقائياً إعداد الصفحة الرئيسية، وتوليد المقالات المميزة، التصنيفات، والبودكاست ليظهر موقعك مثل الـ Prototype تماماً وبدون أي إدخال يدوي:</p>
+        <a href="' . esc_url( $setup_url ) . '" class="button button-primary" style="background: #686848; border-color: #4a5d4e; font-weight: bold;">🚀 اضغط هنا لـ تفعيل ومحي محتوى المشروع التلقائي بضغطة زر</a>
+    </div>';
+}
+add_action( 'admin_notices', 'anthro_demo_import_notice' );
+
+// Handle One-Click Import Action
+function anthro_handle_demo_import_action() {
+    if ( isset( $_GET['action'] ) && $_GET['action'] === 'anthro_do_import_demo' && check_admin_referer( 'anthro_import_action' ) ) {
+        anthro_auto_setup_demo_content();
+        wp_redirect( admin_url( 'index.php?anthro_imported=1' ) );
+        exit;
+    }
+}
+add_action( 'admin_action_anthro_do_import_demo', 'anthro_handle_demo_import_action' );
+
+
+
