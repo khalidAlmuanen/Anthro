@@ -1,0 +1,23 @@
+/*
+Theme Name:  Anthro
+Theme URI:   https://anthro.sa
+Description: ثيم أنثرو — منصة أنثروبولوجية سعودية مخصص بالكامل.
+             دعم كامل للعربية RTL + ثنائي اللغة.
+Author:      فريق أنثرو
+Author URI:  https://anthro.sa
+Version:     1.0.0
+Tags:        rtl-language, arabic, blog, magazine, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, full-width-template, post-formats, sticky-post, theme-options, threaded-comments, translation-ready
+Text Domain: anthro
+Domain Path: /languages
+License:     GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Anthro © 2026. All Rights Reserved.
+*/
+
+/* =============================================
+   THIS FILE IS THE THEME IDENTITY FILE.
+   All actual CSS is loaded via functions.php
+   using wp_enqueue_style().
+   See: assets/css/anthro-main.css
+============================================= */

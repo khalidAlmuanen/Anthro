@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نتائج البحث | أنثرو</title>
+  <meta name="description" content="ابحث في مقالات وحلقات أنثرو الأنثروبولوجية." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="search.css" />
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="header-inner container">
+      <a href="index.html" class="logo"><div class="logo-icon">          <svg width="38" height="42" viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="20,1 25.5,6.5 20,12 14.5,6.5" fill="currentColor"/>
+            <line x1="19" y1="13.5" x2="6" y2="42" stroke="currentColor" stroke-width="4.5" stroke-linecap="square"/>
+            <line x1="21" y1="13.5" x2="34" y2="42" stroke="currentColor" stroke-width="4.5" stroke-linecap="square"/>
+            <line x1="2" y1="31" x2="38" y2="31" stroke="currentColor" stroke-width="4.2" stroke-linecap="square"/>
+            <rect x="12" y="36.5" width="16" height="5" fill="currentColor"/>
+          </svg></div><div class="logo-text"><span class="logo-en">Anthro</span><span class="logo-ar">أنثرو</span></div></a>
+      <nav class="main-nav" id="main-nav"><ul class="nav-list"><li><a href="index.html" class="nav-link">الرئيسية</a></li><li><a href="#" class="nav-link">المقالات</a></li><li><a href="podcast.html" class="nav-link">البودكاست</a></li><li><a href="#" class="nav-link">قصص إنسانية</a></li><li><a href="about.html" class="nav-link">عن أنثرو</a></li></ul></nav>
+      <div class="header-actions"><button class="icon-btn search-btn" id="search-toggle" aria-label="بحث"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button><button class="hamburger" id="menu-toggle" aria-label="قائمة" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    </div>
+    <div class="search-overlay" id="search-overlay"><div class="search-inner container"><input type="search" class="search-input" placeholder="ابحث في أنثرو..." id="search-input" /><button class="search-close" id="search-close" aria-label="إغلاق"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div>
+  </header>
+  <div class="mobile-nav" id="mobile-nav"><ul class="mobile-nav-list"><li><a href="index.html" class="mobile-nav-link">الرئيسية</a></li><li><a href="podcast.html" class="mobile-nav-link">البودكاست</a></li><li><a href="about.html" class="mobile-nav-link">عن أنثرو</a></li></ul></div>
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <main>
+
+    <!-- SEARCH HERO -->
+    <section class="search-hero" id="search-hero">
+      <div class="container">
+        <h1 class="search-page-title">ابحث في أنثرو</h1>
+        <div class="search-bar-wrap">
+          <div class="search-bar-main" id="search-bar-main">
+            <svg class="sb-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input
+              type="search"
+              class="search-bar-input"
+              id="main-search-input"
+              placeholder="ابحث عن مقال، كاتب، أو موضوع..."
+              value="العمارة"
+              autocomplete="off"
+            />
+            <button class="sb-clear" id="sb-clear" aria-label="مسح">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <!-- Suggestions dropdown -->
+          <div class="search-suggestions" id="search-suggestions">
+            <div class="sg-group">
+              <p class="sg-label">مقترح</p>
+              <a href="#" class="sg-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>العمارة النجدية</a>
+              <a href="#" class="sg-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>العمارة والمجتمع</a>
+              <a href="#" class="sg-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>العمارة الشعبية السعودية</a>
+            </div>
+          </div>
+        </div>
+        <!-- Type filters -->
+        <div class="search-type-filters" id="search-type-filters">
+          <button class="stf-btn active" data-type="all" id="stf-all">الكل</button>
+          <button class="stf-btn" data-type="articles" id="stf-articles">مقالات <span class="stf-count">٧</span></button>
+          <button class="stf-btn" data-type="podcast" id="stf-podcast">بودكاست <span class="stf-count">٢</span></button>
+          <button class="stf-btn" data-type="authors" id="stf-authors">كتّاب <span class="stf-count">١</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="search-results-section" id="search-results-section">
+      <div class="container">
+
+        <div class="results-header">
+          <p class="results-summary" id="results-summary">
+            <strong>١٠ نتائج</strong> لبحث "<em>العمارة</em>"
+          </p>
+          <div class="sort-btns">
+            <button class="sort-btn active" id="sr-sort-rel">الأكثر صلة</button>
+            <button class="sort-btn" id="sr-sort-new">الأحدث</button>
+          </div>
+        </div>
+
+        <!-- ARTICLES RESULTS -->
+        <div class="results-group" id="rg-articles">
+          <h2 class="rg-heading"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>مقالات</h2>
+          <div class="results-list">
+
+            <article class="result-card" id="sr-1">
+              <div class="result-img result-img--1"></div>
+              <div class="result-body">
+                <div class="result-meta">
+                  <span class="result-type-badge result-type-badge--article">مقال</span>
+                  <span class="result-cat">أنثروبولوجيا اجتماعية</span>
+                  <span class="meta-sep">•</span>
+                  <time>٢ أغسطس ٢٠٢٦</time>
+                </div>
+                <h3 class="result-title"><a href="single.html">عندما تتكلم الحجارة: قراءة في ذاكرة <mark>العمارة</mark> الشعبية السعودية</a></h3>
+                <p class="result-excerpt">تحمل البيوت الطينية القديمة في نجد والحجاز أسرار المجتمعات التي بنتها. في هذا المقال نقرأ ما كتبته الأجيال على جدران البيوت...</p>
+                <div class="result-footer">
+                  <a href="author.html" class="result-author"><div class="av av--1"></div><span>د. نورة المحمد</span></a>
+                  <span class="read-time">٨ دقائق قراءة</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="result-card" id="sr-2">
+              <div class="result-img result-img--2"></div>
+              <div class="result-body">
+                <div class="result-meta"><span class="result-type-badge result-type-badge--article">مقال</span><span class="result-cat">أنثروبولوجيا بصرية</span><span class="meta-sep">•</span><time>١٥ يونيو ٢٠٢٦</time></div>
+                <h3 class="result-title"><a href="#">المشربية والحجاب المعماري: جماليات الخصوصية في الفضاء السعودي</a></h3>
+                <p class="result-excerpt">قراءة في التقاطع بين <mark>العمارة</mark> والقيم الاجتماعية عبر عنصر المشربية الحجازية...</p>
+                <div class="result-footer"><a href="author.html" class="result-author"><div class="av av--1"></div><span>د. نورة المحمد</span></a><span class="read-time">٩ دقائق</span></div>
+              </div>
+            </article>
+
+            <article class="result-card" id="sr-3">
+              <div class="result-img result-img--3"></div>
+              <div class="result-body">
+                <div class="result-meta"><span class="result-type-badge result-type-badge--article">مقال</span><span class="result-cat">المجتمع</span><span class="meta-sep">•</span><time>١ مايو ٢٠٢٦</time></div>
+                <h3 class="result-title"><a href="#">العتبة والباب: حدود الفضاء العام والخاص في <mark>العمارة</mark> النجدية</a></h3>
+                <p class="result-excerpt">حين يصبح الباب حداً فلسفياً — قراءة في <mark>العمارة</mark> كنظام قيمي...</p>
+                <div class="result-footer"><a href="author.html" class="result-author"><div class="av av--1"></div><span>د. نورة المحمد</span></a><span class="read-time">٧ دقائق</span></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- PODCAST RESULTS -->
+        <div class="results-group" id="rg-podcast">
+          <h2 class="rg-heading"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16" fill="currentColor"/></svg>البودكاست</h2>
+          <div class="results-list">
+            <article class="result-card result-card--podcast" id="sr-p1">
+              <div class="result-img result-img--pod1">
+                <button class="rp-play" aria-label="تشغيل"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+              </div>
+              <div class="result-body">
+                <div class="result-meta"><span class="result-type-badge result-type-badge--podcast">بودكاست</span><span class="result-cat">الموسم ٣ — الحلقة ٨</span><span class="meta-sep">•</span><span>٥٢ دقيقة</span></div>
+                <h3 class="result-title"><a href="podcast.html">الراوي الأخير: <mark>عمارة</mark> الذاكرة الشفاهية في الجنوب</a></h3>
+                <p class="result-excerpt">في قرية صغيرة جنوب المملكة، يحتفظ رجل ثمانيني بذاكرة شفاهية استثنائية عن <mark>عمارة</mark> المكان والإنسان.</p>
+                <div class="result-footer"><span class="read-time">٥٢ دقيقة</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- AUTHORS RESULTS -->
+        <div class="results-group" id="rg-authors">
+          <h2 class="rg-heading"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>الكتّاب</h2>
+          <div class="author-results-row">
+            <a href="author.html" class="author-result-card" id="sr-au1">
+              <div class="arc-photo av--1"></div>
+              <div class="arc-info">
+                <h4 class="arc-name">د. نورة المحمد</h4>
+                <p class="arc-title">أستاذة الأنثروبولوجيا — متخصصة في <mark>عمارة</mark> المجتمع</p>
+                <span class="arc-count">١٢ مقال</span>
+              </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /container -->
+    </section>
+
+    <!-- NO RESULTS (hidden by default) -->
+    <div class="no-results" id="no-results" style="display:none;">
+      <div class="container">
+        <div class="no-results-inner">
+          <div class="no-results-icon">
+            <svg viewBox="0 0 80 80" fill="none"><circle cx="36" cy="36" r="28" stroke="currentColor" stroke-width="3" opacity="0.2"/><circle cx="36" cy="36" r="18" stroke="currentColor" stroke-width="2.5" opacity="0.4"/><line x1="57" y1="57" x2="70" y2="70" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.6"/><line x1="28" y1="36" x2="44" y2="36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/></svg>
+          </div>
+          <h2 class="no-results-title">لا نتائج لهذا البحث</h2>
+          <p class="no-results-desc">حاول البحث بكلمات أخرى، أو تصفّح التصنيفات أدناه.</p>
+          <div class="no-results-suggestions">
+            <p>اقتراحات:</p>
+            <div class="nr-tags">
+              <a href="#" class="art-tag-link" id="nr-society">المجتمع</a>
+              <a href="#" class="art-tag-link" id="nr-memory">الذاكرة</a>
+              <a href="#" class="art-tag-link" id="nr-culture">الثقافة</a>
+              <a href="#" class="art-tag-link" id="nr-human">الإنسان</a>
+              <a href="podcast.html" class="art-tag-link" id="nr-podcast">البودكاست</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="ft-top"><div class="container"><div class="ft-grid">
+      <div class="ft-brand"><a href="index.html" class="logo logo--ft"><div class="logo-icon"><svg width="30" height="34" viewBox="0 0 38 42" fill="none"><polygon points="19,3 24,11 19,17 14,11" fill="currentColor"/><line x1="5" y1="39" x2="19" y2="17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="33" y1="39" x2="19" y2="17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="9" y1="30" x2="29" y2="30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div><div class="logo-text"><span class="logo-en">Anthro</span><span class="logo-ar">أنثرو</span></div></a><p class="ft-tagline">أنثروبولوجيا سعودية</p></div>
+      <div class="ft-col"><h5 class="ft-head">المحتوى</h5><ul><li><a href="#">المقالات</a></li><li><a href="podcast.html">البودكاست</a></li></ul></div>
+      <div class="ft-col"><h5 class="ft-head">أنثرو</h5><ul><li><a href="about.html">عن أنثرو</a></li><li><a href="contact.html">تواصل معنا</a></li></ul></div>
+    </div></div></div>
+    <div class="ft-bottom"><div class="container"><p class="ft-copy">© ٢٠٢٦ أنثرو</p></div></div>
+  </footer>
+  <button class="back-top" id="back-top" aria-label="العودة للأعلى"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <script src="script.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عندما تتكلم الحجارة | أنثرو</title>
+  <meta name="description" content="تحمل البيوت الطينية القديمة في نجد والحجاز أسرار المجتمعات التي بنتها." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="single.css" />
+</head>
+<body class="single-page">
+
+  <!-- HEADER (same as index) -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner container">
+      <a href="index.html" class="logo" aria-label="أنثرو">
+        <div class="logo-icon">
+          <svg width="38" height="42" viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="20,1 25.5,6.5 20,12 14.5,6.5" fill="currentColor"/>
+            <line x1="19" y1="13.5" x2="6" y2="42" stroke="currentColor" stroke-width="4.5" stroke-linecap="square"/>
+            <line x1="21" y1="13.5" x2="34" y2="42" stroke="currentColor" stroke-width="4.5" stroke-linecap="square"/>
+            <line x1="2" y1="31" x2="38" y2="31" stroke="currentColor" stroke-width="4.2" stroke-linecap="square"/>
+            <rect x="12" y="36.5" width="16" height="5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-en">Anthro</span>
+          <span class="logo-ar">أنثرو</span>
+        </div>
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+          <li><a href="#" class="nav-link active">المقالات</a></li>
+          <li><a href="podcast.html" class="nav-link">البودكاست</a></li>
+          <li><a href="#" class="nav-link">قصص إنسانية</a></li>
+          <li><a href="#" class="nav-link">الأكاديمية</a></li>
+          <li><a href="about.html" class="nav-link">عن أنثرو</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn search-btn" id="search-toggle" aria-label="بحث">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="hamburger" id="menu-toggle" aria-label="قائمة" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="search-overlay" id="search-overlay">
+      <div class="search-inner container">
+        <input type="search" class="search-input" placeholder="ابحث في أنثرو..." id="search-input" />
+        <button class="search-close" id="search-close" aria-label="إغلاق">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link">الرئيسية</a></li>
+      <li><a href="#" class="mobile-nav-link">المقالات</a></li>
+      <li><a href="podcast.html" class="mobile-nav-link">البودكاست</a></li>
+      <li><a href="#" class="mobile-nav-link">قصص إنسانية</a></li>
+      <li><a href="#" class="mobile-nav-link">الأكاديمية</a></li>
+      <li><a href="about.html" class="mobile-nav-link">عن أنثرو</a></li>
+    </ul>
+  </div>
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <!-- READING PROGRESS BAR -->
+  <div class="reading-progress" id="reading-progress">
+    <div class="reading-bar" id="reading-bar"></div>
+  </div>
+
+  <main>
+
+    <!-- ARTICLE HERO -->
+    <section class="article-hero" id="article-hero">
+      <div class="article-hero-bg">
+        <div class="article-hero-img"></div>
+        <div class="article-hero-overlay"></div>
+      </div>
+      <div class="article-hero-content container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="مسار التنقل">
+          <a href="index.html" class="bc-link">الرئيسية</a>
+          <span class="bc-sep">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </span>
+          <a href="#" class="bc-link">المقالات</a>
+          <span class="bc-sep"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></span>
+          <span class="bc-current">أنثروبولوجيا اجتماعية</span>
+        </nav>
+
+        <div class="article-category-tag">أنثروبولوجيا اجتماعية</div>
+
+        <h1 class="article-main-title">
+          عندما تتكلم الحجارة: قراءة في ذاكرة<br />
+          العمارة الشعبية السعودية
+        </h1>
+
+        <p class="article-lead">
+          تحمل البيوت الطينية القديمة في نجد والحجاز أسرار المجتمعات التي بنتها. نرحل عبر الزمن لنقرأ ما كتبته الأجيال على جدران البيوت القديمة.
+        </p>
+
+        <div class="article-hero-meta">
+          <a href="author.html" class="art-author-full">
+            <div class="av av--1 av--lg"></div>
+            <div class="author-info">
+              <span class="author-name-full">د. نورة المحمد</span>
+              <span class="author-title">أستاذة الأنثروبولوجيا — جامعة الملك عبدالعزيز</span>
+            </div>
+          </a>
+          <div class="article-meta-details">
+            <div class="meta-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <time>٢ أغسطس ٢٠٢٦</time>
+            </div>
+            <div class="meta-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>٨ دقائق قراءة</span>
+            </div>
+            <div class="meta-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span>١٢٤٦ مشاهدة</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Share -->
+        <div class="article-share-bar">
+          <span class="share-label">شارك:</span>
+          <div class="share-btns">
+            <button class="share-btn" aria-label="مشاركة على تويتر X" id="share-x">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </button>
+            <button class="share-btn" aria-label="مشاركة على واتساب" id="share-wa">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </button>
+            <button class="share-btn" aria-label="نسخ الرابط" id="share-copy">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ARTICLE CONTENT LAYOUT -->
+    <div class="article-layout container" id="article-layout">
+
+      <!-- STICKY SIDEBAR (LEFT in RTL = appears on left) -->
+      <aside class="article-sidebar" id="article-sidebar">
+        <!-- Floating share -->
+        <div class="sidebar-share sticky-widget" id="sidebar-share">
+          <p class="widget-label">شارك</p>
+          <div class="sidebar-share-btns">
+            <button class="s-share-btn" aria-label="تويتر X">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </button>
+            <button class="s-share-btn" aria-label="واتساب">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </button>
+            <button class="s-share-btn" aria-label="نسخ">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </button>
+          </div>
+          <div class="sidebar-divider"></div>
+          <button class="s-share-btn s-bookmark-btn" id="bookmark-btn" aria-label="حفظ">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc-widget sticky-widget" id="toc-widget">
+          <p class="widget-label">المحتويات</p>
+          <nav class="toc-nav">
+            <a href="#sec1" class="toc-link active">المدخل: الحجر كوثيقة</a>
+            <a href="#sec2" class="toc-link">العمارة النجدية: قراءة اجتماعية</a>
+            <a href="#sec3" class="toc-link">الحجاز والانفتاح المعماري</a>
+            <a href="#sec4" class="toc-link">لغة الزخارف والرموز</a>
+            <a href="#sec5" class="toc-link">الذاكرة في مواجهة التحديث</a>
+            <a href="#sec6" class="toc-link">خاتمة: من يحفظ ما تقوله الحجارة؟</a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- MAIN ARTICLE CONTENT -->
+      <article class="article-content" id="article-content">
+
+        <!-- Opening quote -->
+        <div class="article-opening-quote">
+          <blockquote>
+            "كل بيت قديم هو نص أنثروبولوجي لم يُطبع، يحتاج فقط إلى من يقرأه."
+          </blockquote>
+          <cite>— كلود ليفي-شتراوس، الأنثروبولوجيا البنيوية</cite>
+        </div>
+
+        <section id="sec1">
+          <p>قبل أن تُبنى المدن بالإسمنت والزجاج، كانت المجتمعات السعودية تكتب سيرتها على الطين والحجر. لم يكن البناء مجرد مأوى — كان بياناً اجتماعياً، وعقداً أخلاقياً بين الإنسان والمكان، وذاكرةً مشتركة تنتقل من جيل إلى آخر دون أن تُكتب في كتاب.</p>
+
+          <p>حين تقف أمام قصر الدرعية أو أمام أحد بيوت جدة التاريخية في حي البلد، لا تقف أمام مبنى فحسب — تقف أمام جغرافيا اجتماعية متكاملة، حيث كل نافذة وكل مشربية وكل عتبة تحكي قصة عائلة وأخلاق وعلاقات.</p>
+        </section>
+
+        <!-- Inline image -->
+        <figure class="article-figure">
+          <div class="article-img-placeholder article-img-placeholder--wide" style="background-image: url('assets/images/hijazi_roshan.png'); background-size: cover; background-position: center;">
+            <div class="img-caption-overlay">
+              <span>أحد بيوت حي البلد في جدة التاريخية — تصوير: سلمى الغامدي</span>
+            </div>
+          </div>
+          <figcaption>بيوت جدة التاريخية بمشربياتها الخشبية المزخرفة — مثال حي على العمارة الاجتماعية التي تُجسّد القيم والهوية</figcaption>
+        </figure>
+
+        <section id="sec2">
+          <h2>العمارة النجدية: قراءة اجتماعية</h2>
+          <p>تتميز العمارة النجدية التقليدية بما يمكن تسميته "بنيوية الانكفاء الداخلي" — المنازل تتحول نحو الداخل، فضاءاتها تتمحور حول الفناء الداخلي (العرصة)، ونوافذها الخارجية ضيقة. هذا ليس عشوائياً؛ إنه تعبير بنيوي عن منظومة قيم تُقدّم الخصوصية والمجتمع المنكفئ على نفسه.</p>
+
+          <p>يقول المعماري الدكتور عبدالرحمن الأنصاري في دراسته الكلاسيكية "المسكن الشعبي في المملكة العربية السعودية" إن الغرف في البيت النجدي التقليدي لم تُخصَّص للأفراد بل للوظائف الاجتماعية — مجلس الرجال (الديوان)، مجلس النساء، غرفة الضيافة — كل غرفة تعريف اجتماعي وليس شخصياً.</p>
+
+          <blockquote class="article-pullquote">
+            في البيت النجدي التقليدي، الغرف لم تُخصَّص للأفراد بل للوظائف الاجتماعية — كل غرفة تعريف اجتماعي وليس شخصياً.
+          </blockquote>
+        </section>
+
+        <section id="sec3">
+          <h2>الحجاز والانفتاح المعماري</h2>
+          <p>على النقيض من نجد، تعكس عمارة الحجاز انفتاحاً مغايراً — فهي مدن ميناء، تشرّبت من بحرها الأحمر تنوع الأعراق والثقافات. المشربية الحجازية ليست مجرد نافذة خشبية؛ إنها حل ذكي لمعادلة صعبة: كيف تسمح للهواء والضوء بالدخول دون أن تكشف الداخل؟</p>
+
+          <p>الباحثة زهرة الحسيني تصف المشربية بأنها "حوار معماري مع المفارقة الاجتماعية" — شاهد من الداخل دون أن تُرى من الخارج، حاضر في المدينة دون أن تنكشف للمدينة. إنها الخصوصية تُبنى لا تُفرض.</p>
+        </section>
+
+        <!-- Stats highlight -->
+        <div class="article-stats-box">
+          <div class="stat-highlight">
+            <span class="sh-num">٧٠٠٠+</span>
+            <span class="sh-label">مبنى تاريخي مسجل في السجل الوطني للتراث</span>
+          </div>
+          <div class="stat-highlight">
+            <span class="sh-num">٣٠٪</span>
+            <span class="sh-label">منها مهدد بالاندثار بحلول ٢٠٣٠</span>
+          </div>
+          <div class="stat-highlight">
+            <span class="sh-num">١٢٠+</span>
+            <span class="sh-label">سنة متوسط عمر المباني الطينية المُصانة</span>
+          </div>
+        </div>
+
+        <section id="sec4">
+          <h2>لغة الزخارف والرموز</h2>
+          <p>لم تكن الزخارف المنحوتة على الأبواب والنوافذ تزييناً جمالياً فحسب — كانت هوية ورسالة. في بعض مناطق عسير، تحمل واجهات البيوت نقوشاً هندسية مشفّرة تدل على انتماء القبيلة، وعدد أفراد الأسرة، وأحياناً على المكانة الاجتماعية لصاحب البيت.</p>
+
+          <p>الدكتورة سحر الشريف من جامعة الملك سعود رصدت في بحثها الميداني في الباحة أن ١٢ نمطاً هندسياً متكرراً في الزخارف المحلية يمكن تتبعها عبر خمسة أجيال — أي أن العائلة كانت "تمضي" على بيتها بنفس الطريقة التي يُمضي بها الكاتب على كتابه.</p>
+        </section>
+
+        <figure class="article-figure">
+          <div class="article-img-placeholder">
+            <div class="img-caption-overlay">
+              <span>نماذج من الزخارف الهندسية في عمارة منطقة عسير — أرشيف المركز الوطني للتراث</span>
+            </div>
+          </div>
+          <figcaption>الزخارف الهندسية في منطقة عسير — كل نمط يحمل دلالة اجتماعية وتاريخية خاصة</figcaption>
+        </figure>
+
+        <section id="sec5">
+          <h2>الذاكرة في مواجهة التحديث</h2>
+          <p>في العقود الأخيرة، سرّعت موجات التحديث من وتيرة اندثار هذا الإرث المعماري. مدن تتمدد، أحياء تُهدم، ذاكرة معمارية تختفي في جرافات البناء. لكن الأكثر إثارة للقلق ليس الهدم المادي فحسب — بل الهدم المعرفي: حين يُهدم المبنى لا يبقى منه إلا صورة، وحين تُهمَل الصورة لا يبقى شيء.</p>
+
+          <p>رصد المعهد الدولي لصون التراث أن ٦٠٪ من المباني التاريخية التي اندثرت في السعودية بين ١٩٨٠ و٢٠٢٠ رحلت دون أي توثيق أكاديمي. خسرنا المبنى وخسرنا معه قراءة الذاكرة التي يحملها.</p>
+
+          <blockquote class="article-pullquote">
+            ٦٠٪ من المباني التاريخية التي اندثرت في السعودية بين ١٩٨٠ و٢٠٢٠ رحلت دون أي توثيق أكاديمي.
+          </blockquote>
+        </section>
+
+        <section id="sec6">
+          <h2>خاتمة: من يحفظ ما تقوله الحجارة؟</h2>
+          <p>في رحلاتي الميدانية لثلاث سنوات عبر نجد والحجاز وعسير، كنت ألتقي دائماً بنمط متشابه: الأجداد يعرفون ما تعنيه الحجارة، وأحفادهم يعيشون بجانبها دون أن يسمعوها. الهوة ليست بين الأجيال فقط — بل بين نمطين من التعامل مع الماضي: الماضي كذاكرة حية، والماضي كأثر متحفي.</p>
+
+          <p>مهمة الأنثروبولوجيا هنا ليست الحنين إلى الماضي، بل جعل ذاكرته متاحة للحاضر — قراءة الحجارة قبل أن تصمت إلى الأبد.</p>
+        </section>
+
+        <!-- Tags -->
+        <div class="article-tags">
+          <span class="tags-label">الوسوم:</span>
+          <a href="#" class="art-tag-link">العمارة الشعبية</a>
+          <a href="#" class="art-tag-link">الذاكرة الثقافية</a>
+          <a href="#" class="art-tag-link">التراث السعودي</a>
+          <a href="#" class="art-tag-link">الأنثروبولوجيا الاجتماعية</a>
+          <a href="#" class="art-tag-link">نجد</a>
+          <a href="#" class="art-tag-link">الحجاز</a>
+        </div>
+
+        <!-- Author Bio Card -->
+        <div class="author-bio-card" id="author-bio">
+          <a href="author.html" class="author-bio-photo"><div class="av av--1" style="width:72px;height:72px;"></div></a>
+          <div class="author-bio-text">
+            <div class="author-bio-header">
+              <a href="author.html" class="author-bio-name">د. نورة المحمد</a>
+              <span class="author-bio-title">أستاذة الأنثروبولوجيا — جامعة الملك عبدالعزيز</span>
+            </div>
+            <p class="author-bio-desc">
+              متخصصة في أنثروبولوجيا العمارة والمجتمعات الحضرية. أجرت دراسات ميدانية في ثلاث مناطق سعودية على مدى عشر سنوات. صدر لها كتاب "الحجر والذاكرة" عام ٢٠٢٤.
+            </p>
+            <a href="author.html" class="author-bio-link">عرض جميع مقالات الكاتبة <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Article Navigation -->
+        <nav class="article-nav" aria-label="التنقل بين المقالات">
+          <a href="#" class="art-nav-btn art-nav-btn--prev">
+            <div class="art-nav-dir">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              المقال السابق
+            </div>
+            <h4>القهوة العربية: طقس اجتماعي أم هوية ثقافية؟</h4>
+          </a>
+          <div class="art-nav-sep"></div>
+          <a href="#" class="art-nav-btn art-nav-btn--next">
+            <div class="art-nav-dir">
+              المقال التالي
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <h4>الوجه المكشوف: الفوتوغرافيا الأنثروبولوجية في المجتمع السعودي</h4>
+          </a>
+        </nav>
+
+      </article>
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="article-sidebar-right" id="sidebar-right">
+        <!-- Related Articles -->
+        <div class="sidebar-widget">
+          <h3 class="widget-heading">مقالات ذات صلة</h3>
+          <div class="related-articles">
+            <article class="related-card" id="rel-1">
+              <div class="related-img" style="background: linear-gradient(135deg, #686848, #3d3e28);"></div>
+              <div class="related-body">
+                <span class="related-cat">الذاكرة</span>
+                <h4 class="related-title"><a href="#">سوق الحميدية: ذاكرة مدينة في مواجهة التحديث</a></h4>
+                <span class="related-time">٦ دقائق</span>
+              </div>
+            </article>
+            <article class="related-card" id="rel-2">
+              <div class="related-img" style="background: linear-gradient(135deg, #C47A44, #8B5E3C);"></div>
+              <div class="related-body">
+                <span class="related-cat">الثقافة</span>
+                <h4 class="related-title"><a href="#">الأغنية الشعبية كوثيقة تاريخية: ما تخبرنا به الجنوب</a></h4>
+                <span class="related-time">٩ دقائق</span>
+              </div>
+            </article>
+            <article class="related-card" id="rel-3">
+              <div class="related-img" style="background: linear-gradient(135deg, #3d3e28, #686848);"></div>
+              <div class="related-body">
+                <span class="related-cat">المجتمع</span>
+                <h4 class="related-title"><a href="#">الديوانية بين الأصالة والحداثة</a></h4>
+                <span class="related-time">٨ دقائق</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Newsletter mini -->
+        <div class="sidebar-widget sidebar-nl">
+          <div class="sidebar-nl-icon">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M28 6H4C2.9 6 2 6.9 2 8v16c0 1.1.9 2 2 2h24c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z" stroke="currentColor" stroke-width="2"/><polyline points="2 8 16 18 30 8" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3 class="widget-heading">النشرة الأسبوعية</h3>
+          <p class="widget-desc">مقال واحد + قصة واحدة كل أسبوع.</p>
+          <form class="sidebar-nl-form" id="sidebar-nl-form">
+            <input type="email" class="sidebar-nl-input" placeholder="بريدك الإلكتروني" />
+            <button type="submit" class="btn btn--primary" style="width:100%; justify-content:center; margin-top: 10px;">اشترك</button>
+          </form>
+        </div>
+
+        <!-- Podcast CTA -->
+        <div class="sidebar-widget sidebar-pod">
+          <div class="pod-widget-inner">
+            <div class="pod-widget-season">الموسم الثالث</div>
+            <h3 class="pod-widget-title">أصوات من الحقل</h3>
+            <p class="pod-widget-desc">استمع لحلقة مرتبطة بهذا المقال — الراوي الأخير.</p>
+            <a href="podcast.html" class="btn btn--outline" style="width:100%; justify-content:center; margin-top:16px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+              استمع الآن
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div><!-- /article-layout -->
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" id="footer">
+    <div class="ft-top">
+      <div class="container">
+        <div class="ft-grid">
+          <div class="ft-brand">
+            <a href="index.html" class="logo logo--ft">
+              <div class="logo-icon"><svg width="30" height="34" viewBox="0 0 38 42" fill="none"><polygon points="19,3 24,11 19,17 14,11" fill="currentColor"/><line x1="5" y1="39" x2="19" y2="17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="33" y1="39" x2="19" y2="17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="9" y1="30" x2="29" y2="30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+              <div class="logo-text"><span class="logo-en">Anthro</span><span class="logo-ar">أنثرو</span></div>
+            </a>
+            <p class="ft-tagline">أنثروبولوجيا سعودية<br />الإنسان • الثقافة • المجتمع • الذاكرة الحية</p>
+          </div>
+          <div class="ft-col"><h5 class="ft-head">المحتوى</h5><ul><li><a href="#">المقالات</a></li><li><a href="podcast.html">البودكاست</a></li><li><a href="#">قصص إنسانية</a></li><li><a href="#">الأكاديمية</a></li></ul></div>
+          <div class="ft-col"><h5 class="ft-head">التصنيفات</h5><ul><li><a href="#">الإنسان</a></li><li><a href="#">الثقافة</a></li><li><a href="#">المجتمع</a></li><li><a href="#">الذاكرة الحية</a></li></ul></div>
+          <div class="ft-col"><h5 class="ft-head">أنثرو</h5><ul><li><a href="about.html">عن أنثرو</a></li><li><a href="author.html">الكتّاب</a></li><li><a href="contact.html">تواصل معنا</a></li></ul></div>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <div class="container">
+        <p class="ft-copy">© ٢٠٢٦ أنثرو — جميع الحقوق محفوظة</p>
+        <div class="ft-legal"><a href="#">سياسة الخصوصية</a><span>·</span><a href="#">شروط الاستخدام</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-top" id="back-top" aria-label="العودة للأعلى">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+  <script src="single.js"></script>
+</body>
+</html>
